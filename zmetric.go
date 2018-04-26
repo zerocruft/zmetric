@@ -19,14 +19,14 @@ func init() {
 // NewRate creates a float64 channel that is monitored with at least the given sample size time.Duration passed in.
 // The channel is used to send float64 data point values and the Get function will return the crunched Rate object
 // created from monitoring subject channel
-func NewRate(sampleDuration time.Duration) (chan float64, string, error) {
+func NewRate(sampleDuration time.Duration) (chan int64, string, error) {
 	id, err := uuid.NewV1()
 	if err != nil {
 		return nil, "", err
 	}
 	key := id.String()
 
-	gauge := make(chan float64)
+	gauge := make(chan int64)
 	points := []dataPoint{}
 	pointsMutex := sync.Mutex{}
 

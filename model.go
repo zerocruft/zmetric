@@ -1,16 +1,24 @@
 package zmetric
 
-import "time"
+import (
+	"encoding/json"
+	"time"
+)
 
 type dataPoint struct {
 	timestamp int64
-	point     float64
+	point     int64
 }
 
 type Rate struct {
 	Count    int
-	Average  float64
-	Minimum  float64
-	Maximum  float64
+	Average  int64
+	Minimum  int64
+	Maximum  int64
 	Duration time.Duration
+}
+
+func (r Rate) String() string {
+	rb, _ := json.Marshal(r)
+	return string(rb)
 }

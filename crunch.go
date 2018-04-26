@@ -3,7 +3,7 @@ package zmetric
 func crunchRate(points []dataPoint) Rate {
 	rate := Rate{}
 
-	var sum float64 = 0
+	var sum int64 = 0
 	var min = points[0].point
 	var max = points[0].point
 
@@ -17,7 +17,7 @@ func crunchRate(points []dataPoint) Rate {
 			max = dp.point
 		}
 	}
-	rate.Average = sum / float64(len(points))
+	rate.Average = sum / int64(len(points))
 	rate.Maximum = max
 	rate.Minimum = min
 	rate.Count = len(points)
